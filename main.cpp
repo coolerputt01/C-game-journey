@@ -12,7 +12,7 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
    for(int i = 0; i <= 3;i++){
     sf::CircleShape triangle(80.f,3);
     triangle.setOrigin(sf::Vector2f(triangle.getLocalBounds().size.x / 2.f, triangle.getLocalBounds().size.y / 2.f));
-    triangle.setScale({0.8f,0.8f});
+    triangle.setScale({0.9f,0.8f});
     triangle.setFillColor(sf::Color(56, 160, 75));
     triangle.scale({scale_factor , scale_factor});
     triangle.setPosition({380.f,height + 60.f});
@@ -20,7 +20,10 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangles.push_back(triangle);
     scale_factor += 0.15;
 }
-    while (window.isOpen()) {
+   sf::RectangleShape rect({80.f,90.f});
+   rect.setOrigin(sf::Vector2f(rect.getLocalBounds().size.x / 2.f , rect.getLocalBounds().size.y / 2.f));
+   rect.setFillColor(sf::Color(180, 101, 60));
+   while (window.isOpen()){
         // pollEvent now returns std::optional<sf::Event>
         while (auto event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) {
@@ -32,6 +35,7 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
        for(auto &t : triangles){ 
 window.draw(t);
 }
+        window.draw(rect);
         window.display();
     }
     return 0;
