@@ -17,10 +17,14 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangle.scale({scale_factor , scale_factor});
     triangle.setPosition({380.f,height + 60.f});
     height += factor;
-    triangles.push_back(triangle);
-    scale_factor += 0.15;
+    triangles.insert(triangles.begin(),triangle);
+    scale_factor += 0.2;
+    if(i == 3){
+      triangles.front().setFillColor(sf::Color(30, 101, 43));
+    }
 }
-   sf::CircleShape lastTriangle = triangles.back();
+   sf::CircleShape lastTriangle = triangles.front();
+   lastTriangle.setFillColor(sf::Color(30, 101, 43));
    sf::RectangleShape rect({80.f,90.f});
    rect.setOrigin(sf::Vector2f(rect.getSize().x / 2.f , rect.getSize().y));
    rect.setFillColor(sf::Color(180, 101, 60));
