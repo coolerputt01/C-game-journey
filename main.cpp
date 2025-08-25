@@ -20,9 +20,12 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangles.push_back(triangle);
     scale_factor += 0.15;
 }
+   sf::CircleShape lastTriangle = triangles.back();
    sf::RectangleShape rect({80.f,90.f});
-   rect.setOrigin(sf::Vector2f(rect.getLocalBounds().size.x / 2.f , rect.getLocalBounds().size.y / 2.f));
+   rect.setOrigin(sf::Vector2f(rect.getSize().x / 2.f , rect.getSize().y));
    rect.setFillColor(sf::Color(180, 101, 60));
+   sf::FloatRect bounds = lastTriangle.getGlobalBounds();
+   rect.setPosition({bounds.position.x + bounds.size.x / 2, bounds.position.y + bounds.size.y + 90.f});
    while (window.isOpen()){
         // pollEvent now returns std::optional<sf::Event>
         while (auto event = window.pollEvent()) {
