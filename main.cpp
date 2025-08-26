@@ -4,6 +4,7 @@
 int main() {
     // In SFML 3, VideoMode takes a Vector2u
     std::vector<sf::CircleShape> triangles;
+    std::vector<sf::CircleShape> smallTriangles;
 
 sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
    float factor = 60.f;
@@ -19,6 +20,15 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     height += factor;
     triangles.insert(triangles.begin(),triangle);
     scale_factor += 0.2;
+    if(i == 1){
+      sf::CircleShape smallTriangle(80.f,3);
+      smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x / 2.f,smallTriangle.getLocalBounds().size.y / 2.f));
+      smallTriangle.setScale({0.2f,0.3f});
+      smallTriangle.setFillColor(sf::Color(206, 209, 202));
+      smallTriangle.scale({1.f,1.f});
+      smallTriangle.setPosition({triangles.front().getPosition().x , triangles.front().getPosition().y});
+      smallTriangles.insert(smallTriangles.begin(),smallTriangle);
+    }
     if(i == 3){
       triangles.front().setFillColor(sf::Color(30, 101, 43));
     }
@@ -27,7 +37,9 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
    lastTriangle.setFillColor(sf::Color(30, 101, 43));
    sf::RectangleShape rect({80.f,90.f});
    rect.setOrigin(sf::Vector2f(rect.getSize().x / 2.f , rect.getSize().y));
+   rect.setScale({1.2,2.f});
    rect.setFillColor(sf::Color(180, 101, 60));
+   rect.scale({0.5,0.5});
    sf::FloatRect bounds = lastTriangle.getGlobalBounds();
    rect.setPosition({bounds.position.x + bounds.size.x / 2, bounds.position.y + bounds.size.y + 90.f});
    while (window.isOpen()){
@@ -38,12 +50,15 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
             }
         }
 
-        window.clear(sf::Color(255,255,255));
+       window.clear(sf::Color(255,255,255));
        for(auto &t : triangles){ 
-window.draw(t);
-}
-        window.draw(rect);
-        window.display();
-    }
+         window.draw(t);
+       }
+      for(auto &st : smallTriangles){
+         window.draw(st); 
+      }
+       window.draw(rect);
+       window.display();
+   }
     return 0;
 }
