@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <optional>
 #include <vector>
+#include <cmath>
+
 int main() {
     // In SFML 3, VideoMode takes a Vector2u
     std::vector<sf::CircleShape> triangles;
@@ -21,13 +23,17 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangles.insert(triangles.begin(),triangle);
     scale_factor += 0.2;
     if(i == 1){
+      float move_factor = 27.3;
+      for(float i = 0.f; i <= ceil(triangles.front().getLocalBounds().size.x/30.f) - 1.f;i++){
       sf::CircleShape smallTriangle(80.f,3);
-      smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x / 2.f,smallTriangle.getLocalBounds().size.y / 2.f));
-      smallTriangle.setScale({0.2f,0.3f});
+      smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x - 20.f / 2.f,smallTriangle.getLocalBounds().size.y / 2.f));
+      smallTriangle.setScale({0.2f,0.2f});
       smallTriangle.setFillColor(sf::Color(206, 209, 202));
       smallTriangle.scale({1.f,1.f});
-      smallTriangle.setPosition({triangles.front().getPosition().x , triangles.front().getPosition().y});
+      smallTriangle.setPosition({316.f + move_factor , 98.f});
       smallTriangles.insert(smallTriangles.begin(),smallTriangle);
+      move_factor += 27.3;
+    }
     }
     if(i == 3){
       triangles.front().setFillColor(sf::Color(30, 101, 43));
