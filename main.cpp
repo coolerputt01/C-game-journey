@@ -34,10 +34,21 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
       smallTriangles.insert(smallTriangles.begin(),smallTriangle);
       move_factor += 27.3;
     }
+     }
+    if(i == 2) {
+      sf::CircleShape smallTriangle(80.f,3);
+      smallTriangle.setOrigin(sf::Vector(smallTriangle.getLocalBounds().size.x / 2.f, smallTriangle.getLocalBounds().size.y / 2.f));
+      smallTriangle.setScale({0.2f,0.2f});
+      smallTriangle.setFillColor(sf::Color(252,3,3));
+      smallTriangle.scale({1.f,1.f});
+      smallTriangle.setPosition({306.f + move_factor,198.f});
+      smallTriangles.insert(smallTriangles.begin(),smallTriangle);
+      move_factor += 27.3;
     }
     if(i == 3){
       triangles.front().setFillColor(sf::Color(30, 101, 43));
     }
+}
 }
    sf::CircleShape lastTriangle = triangles.front();
    lastTriangle.setFillColor(sf::Color(30, 101, 43));
