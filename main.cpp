@@ -24,7 +24,7 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangles.insert(triangles.begin(),triangle);
     scale_factor += 0.2;
     if(i == 1){
-      for(float i = 0.f; i <= ceil(triangles.front().getLocalBounds().size.x/30.f) - 1.f;i++){
+      for(float j = 0.f; j <= ceil(triangles.front().getLocalBounds().size.x/30.f) - 1.f;j++){
       sf::CircleShape smallTriangle(80.f,3);
       smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x - 20.f / 2.f,smallTriangle.getLocalBounds().size.y / 2.f));
       smallTriangle.setScale({0.2f,0.2f});
@@ -36,7 +36,7 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     }
      }
     if(i == 2) {
-      for(float i = 0.f; i <= ceil(triangles.front().getLocalBounds().size.x/30.f); i++){
+      for(float j = 0.f; j <= ceil(triangles.front().getLocalBounds().size.x/30.f); j++){
       sf::CircleShape smallTriangle(80.f,3);
       smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x / 2.f, smallTriangle.getLocalBounds().size.y / 2.f));
       smallTriangle.setScale({0.2f,0.2f});
@@ -49,13 +49,13 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
 }
     if(i == 3){
       triangles.front().setFillColor(sf::Color(30, 101, 43));
-      for(float i = 0.f; ceil(triangles.front().getLocalBounds().size.x/30.f) + 2.f;i++){
+      for(float j = 0.f; j <= ceil(triangles.front().getLocalBounds().size.x/30.f) + 2.f;j++){
         sf::CircleShape smallTriangle(80.f,3);
         smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x/2.f, smallTriangle.getLocalBounds().size.y/2.f));
         smallTriangle.setScale({0.2f,0.2f});
-        smallTriangle.setFillColor(sf::Color(252,3,3));
+        smallTriangle.setFillColor(sf::Color(56,160,75));
         smallTriangle.scale({1.f,1.f});
-        smallTriangle.setPosition({150.f + move_factor, 90.f});
+        smallTriangle.setPosition({-28.f + move_factor, 308.f});
         smallTriangles.insert(smallTriangles.begin(),smallTriangle);
         move_factor += 27.3;
       }
