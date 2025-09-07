@@ -12,6 +12,7 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
    float factor = 60.f;
    float scale_factor = 1.05f;   
    float height = 0.f;
+   float move_factor = 27.3;
    for(int i = 0; i <= 3;i++){
     sf::CircleShape triangle(80.f,3);
     triangle.setOrigin(sf::Vector2f(triangle.getLocalBounds().size.x / 2.f, triangle.getLocalBounds().size.y / 2.f));
@@ -23,7 +24,6 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     triangles.insert(triangles.begin(),triangle);
     scale_factor += 0.2;
     if(i == 1){
-      float move_factor = 27.3;
       for(float i = 0.f; i <= ceil(triangles.front().getLocalBounds().size.x/30.f) - 1.f;i++){
       sf::CircleShape smallTriangle(80.f,3);
       smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x - 20.f / 2.f,smallTriangle.getLocalBounds().size.y / 2.f));
@@ -36,19 +36,30 @@ sf::RenderWindow window(sf::VideoMode({1280, 900}), "SFML in Termux VNC");
     }
      }
     if(i == 2) {
+      for(float i = 0.f; i <= ceil(triangles.front().getLocalBounds().size.x/30.f); i++){
       sf::CircleShape smallTriangle(80.f,3);
-      smallTriangle.setOrigin(sf::Vector(smallTriangle.getLocalBounds().size.x / 2.f, smallTriangle.getLocalBounds().size.y / 2.f));
+      smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x / 2.f, smallTriangle.getLocalBounds().size.y / 2.f));
       smallTriangle.setScale({0.2f,0.2f});
-      smallTriangle.setFillColor(sf::Color(252,3,3));
+      smallTriangle.setFillColor(sf::Color(206,209,202));
       smallTriangle.scale({1.f,1.f});
-      smallTriangle.setPosition({306.f + move_factor,198.f});
+      smallTriangle.setPosition({160.f + move_factor,168.f});
       smallTriangles.insert(smallTriangles.begin(),smallTriangle);
       move_factor += 27.3;
     }
+}
     if(i == 3){
       triangles.front().setFillColor(sf::Color(30, 101, 43));
+      for(float i = 0.f; ceil(triangles.front().getLocalBounds().size.x/30.f) + 2.f;i++){
+        sf::CircleShape smallTriangle(80.f,3);
+        smallTriangle.setOrigin(sf::Vector2f(smallTriangle.getLocalBounds().size.x/2.f, smallTriangle.getLocalBounds().size.y/2.f));
+        smallTriangle.setScale({0.2f,0.2f});
+        smallTriangle.setFillColor(sf::Color(252,3,3));
+        smallTriangle.scale({1.f,1.f});
+        smallTriangle.setPosition({150.f + move_factor, 90.f});
+        smallTriangles.insert(smallTriangles.begin(),smallTriangle);
+        move_factor += 27.3;
+      }
     }
-}
 }
    sf::CircleShape lastTriangle = triangles.front();
    lastTriangle.setFillColor(sf::Color(30, 101, 43));
